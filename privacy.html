@@ -17,9 +17,9 @@
       --bg2:     #1E1B25;
       --bg3:     #272332;
       --border:  rgba(255,255,255,0.07);
-      --red:     #D93025;
-      --red-l:   #F05048;
-      --amber-l: #F0A820;
+      --green:   #00C853;
+      --green-l: #33D46E;
+      --amber-l: #64FFDA;
       --text:    #EDEAF4;
       --muted:   #9490A6;
       --radius:  12px;
@@ -51,7 +51,7 @@
     }
     .logo-mark {
       width: 30px; height: 30px; border-radius: 7px;
-      background: var(--red);
+      background: var(--green);
       display: flex; align-items: center; justify-content: center;
     }
     .logo-mark svg { width: 16px; height: 16px; fill: #fff; }
@@ -77,7 +77,7 @@
       transition: color 0.15s, border-color 0.15s;
     }
     .lang-btn:hover { color: var(--text); }
-    .lang-btn.active { color: var(--red-l); border-bottom-color: var(--red-l); }
+    .lang-btn.active { color: var(--green-l); border-bottom-color: var(--green-l); }
 
     /* LANG PANELS */
     .lang-panel { display: none; }
@@ -110,13 +110,13 @@
 
     .summary-box {
       background: var(--bg2); border: 1px solid var(--border);
-      border-left: 3px solid var(--red);
+      border-left: 3px solid var(--green);
       border-radius: 0 var(--radius) var(--radius) 0;
       padding: 18px 22px; margin-bottom: 44px;
     }
     .summary-box .s-label {
       font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.1em; color: var(--red-l); margin-bottom: 6px;
+      letter-spacing: 0.1em; color: var(--green-l); margin-bottom: 6px;
     }
     .summary-box p { font-size: 0.93rem; color: var(--text); line-height: 1.65; }
 
@@ -135,7 +135,7 @@
     }
     .section ul li::before {
       content: '–'; position: absolute; left: 0;
-      color: var(--red-l);
+      color: var(--green-l);
     }
 
     .contact-box {
@@ -147,7 +147,7 @@
       letter-spacing: 0.1em; color: var(--amber-l); margin-bottom: 10px;
     }
     .contact-box p { color: var(--text); font-size: 0.92rem; line-height: 1.9; margin: 0; }
-    .contact-box a { color: var(--red-l); text-decoration: none; }
+    .contact-box a { color: var(--green-l); text-decoration: none; }
     .contact-box a:hover { text-decoration: underline; }
 
     [lang="ta"] { line-height: 2.1; }

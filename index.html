@@ -19,10 +19,10 @@
       --bg2:     #1E1B25;
       --bg3:     #272332;
       --border:  rgba(255,255,255,0.07);
-      --red:     #D93025;
-      --red-l:   #F05048;
-      --amber:   #D98C0A;
-      --amber-l: #F0A820;
+      --green:   #00C853;
+      --green-l: #33D46E;
+      --amber:   #00A896;
+      --amber-l: #64FFDA;
       --text:    #EDEAF4;
       --muted:   #9490A6;
       --radius:  12px;
@@ -55,7 +55,7 @@
     }
     .logo-mark {
       width: 30px; height: 30px; border-radius: 7px;
-      background: var(--red);
+      background: var(--green);
       display: flex; align-items: center; justify-content: center;
     }
     .logo-mark svg { width: 16px; height: 16px; fill: #fff; }
@@ -71,12 +71,12 @@
     .nav-cta {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 8px 18px; border-radius: 8px;
-      background: var(--red); color: #fff;
+      background: var(--green); color: #fff;
       font-weight: 600; font-size: 0.85rem;
       text-decoration: none;
       transition: background 0.2s, transform 0.15s;
     }
-    .nav-cta:hover { background: var(--red-l); transform: translateY(-1px); }
+    .nav-cta:hover { background: var(--green-l); transform: translateY(-1px); }
 
     /* ── LANG PANELS ── */
     .lang-panel { display: none; }
@@ -93,16 +93,16 @@
     .hero-bg {
       position: absolute; inset: 0; pointer-events: none;
       background:
-        radial-gradient(ellipse 70% 50% at 50% -10%, rgba(217,48,37,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 30% at 80% 90%, rgba(217,140,10,0.07) 0%, transparent 50%);
+        radial-gradient(ellipse 70% 50% at 50% -10%, rgba(0,200,83,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 80% 90%, rgba(0,168,150,0.07) 0%, transparent 50%);
     }
     .hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
     .hero-badge {
       display: inline-block;
       padding: 5px 14px; border-radius: 100px;
-      background: rgba(217,48,37,0.1); border: 1px solid rgba(217,48,37,0.25);
+      background: rgba(0,200,83,0.1); border: 1px solid rgba(0,200,83,0.25);
       font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em;
-      text-transform: uppercase; color: var(--red-l);
+      text-transform: uppercase; color: var(--green-l);
       margin-bottom: 28px;
     }
     .hero h1 {
@@ -113,7 +113,7 @@
     }
     .hero h1 em {
       font-style: normal;
-      color: var(--red-l);
+      color: var(--green-l);
     }
     .hero p {
       font-size: clamp(1rem, 2vw, 1.15rem);
@@ -127,13 +127,13 @@
     .btn-primary {
       display: inline-flex; align-items: center; gap: 10px;
       padding: 14px 26px; border-radius: 10px;
-      background: var(--red); color: #fff;
+      background: var(--green); color: #fff;
       font-weight: 700; font-size: 0.95rem;
       text-decoration: none;
       transition: background 0.2s, transform 0.15s;
-      box-shadow: 0 4px 20px rgba(217,48,37,0.25);
+      box-shadow: 0 4px 20px rgba(0,200,83,0.25);
     }
-    .btn-primary:hover { background: var(--red-l); transform: translateY(-2px); }
+    .btn-primary:hover { background: var(--green-l); transform: translateY(-2px); }
     .btn-ghost {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 14px 26px; border-radius: 10px;
@@ -147,7 +147,7 @@
     /* STATS */
     .stats { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
     .stat .num { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em; }
-    .stat .num span { color: var(--red-l); }
+    .stat .num span { color: var(--green-l); }
     .stat .lbl { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
 
     /* ── MOCKUP ── */
@@ -175,7 +175,7 @@
     .ph-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
     .ph-title { font-size: 0.9rem; font-weight: 700; }
     .ph-prog { height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
-    .ph-prog-fill { height: 100%; width: 68%; background: var(--red); border-radius: 2px; }
+    .ph-prog-fill { height: 100%; width: 68%; background: var(--green); border-radius: 2px; }
     .ph-card {
       background: var(--bg3); border-radius: 10px; padding: 12px;
       flex: 1;
@@ -217,10 +217,10 @@
       border-radius: var(--radius); padding: 26px;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .f-card:hover { border-color: rgba(217,48,37,0.3); transform: translateY(-3px); }
+    .f-card:hover { border-color: rgba(0,200,83,0.3); transform: translateY(-3px); }
     .f-num {
       font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em;
-      color: var(--red); opacity: 0.35; line-height: 1;
+      color: var(--green); opacity: 0.35; line-height: 1;
       margin-bottom: 12px;
     }
     .f-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 7px; }
@@ -239,10 +239,10 @@
       display: flex; align-items: center; gap: 10px;
       transition: border-color 0.2s, color 0.2s;
     }
-    .t-chip:hover { border-color: rgba(217,48,37,0.25); color: var(--text); }
+    .t-chip:hover { border-color: rgba(0,200,83,0.25); color: var(--text); }
     .t-dot {
       width: 5px; height: 5px; border-radius: 50%;
-      background: var(--red); flex-shrink: 0;
+      background: var(--green); flex-shrink: 0;
     }
 
     /* CTA */
@@ -253,7 +253,7 @@
     .cta-section::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(217,48,37,0.06) 0%, transparent 65%);
+      background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(0,200,83,0.06) 0%, transparent 65%);
       pointer-events: none;
     }
     .cta-section h2 {
