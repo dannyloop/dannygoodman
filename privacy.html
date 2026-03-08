@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy – SG Theory Test</title>
-  <meta name="description" content="Privacy policy for the SG Theory Test app by Danny Goodman.">
+  <meta name="description" content="Privacy policy for the SG Theory Test app. Available in English, 中文, Bahasa Malaysia, and தமிழ்.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,7 +24,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Noto Sans SC', 'Noto Sans Tamil', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.8;
@@ -57,9 +57,29 @@
     }
     .nav-back:hover { color: var(--text); }
 
-    /* CONTENT */
+    /* LANG SWITCHER */
+    .lang-bar {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex; gap: 0;
+      overflow-x: auto;
+    }
+    .lang-btn {
+      padding: 14px 22px;
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--muted);
+      background: none; border: none; cursor: pointer;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .lang-btn:hover { color: var(--text); }
+    .lang-btn.active { color: var(--accent2); border-bottom-color: var(--accent2); }
+
+    /* PAGE HEADER */
     .page-header {
-      padding: 60px 20px 40px;
+      padding: 50px 20px 36px;
       max-width: 760px; margin: 0 auto;
       border-bottom: 1px solid var(--border);
     }
@@ -75,69 +95,59 @@
       font-size: 0.85rem; color: var(--muted);
     }
 
+    /* LANG PANELS */
+    .lang-panel { display: none; }
+    .lang-panel.active { display: block; }
+
     main {
       max-width: 760px; margin: 0 auto;
       padding: 48px 20px 80px;
     }
 
-    .section {
-      margin-bottom: 48px;
-    }
+    .section { margin-bottom: 48px; }
     .section h2 {
       font-size: 1.2rem; font-weight: 700;
-      margin-bottom: 14px;
-      padding-bottom: 10px;
+      margin-bottom: 14px; padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
       color: var(--text);
     }
-    .section p {
-      color: var(--muted); font-size: 0.95rem; margin-bottom: 12px;
-    }
-    .section ul {
-      list-style: none; padding: 0;
-    }
+    .section p { color: var(--muted); font-size: 0.95rem; margin-bottom: 12px; }
+    .section ul { list-style: none; padding: 0; }
     .section ul li {
       color: var(--muted); font-size: 0.95rem;
-      padding: 6px 0 6px 20px;
-      position: relative;
+      padding: 6px 0 6px 20px; position: relative;
     }
     .section ul li::before {
-      content: '→';
-      position: absolute; left: 0;
+      content: '→'; position: absolute; left: 0;
       color: var(--accent2); font-size: 0.85rem;
     }
 
     .highlight-box {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      margin: 20px 0;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px 24px; margin: 20px 0;
     }
-    .highlight-box p {
-      margin-bottom: 0;
-      color: var(--text);
-      font-size: 0.95rem;
-    }
+    .highlight-box p { margin-bottom: 0; color: var(--text); font-size: 0.95rem; }
     .highlight-box .hl-label {
       font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.08em; color: var(--accent2); margin-bottom: 8px;
     }
 
-    /* FOOTER */
+    /* Tamil specific line height */
+    [lang="ta"] { line-height: 2; }
+
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 40px;
       display: flex; flex-wrap: wrap; gap: 16px;
       align-items: center; justify-content: space-between;
       color: var(--muted); font-size: 0.85rem;
-      max-width: 100%;
     }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--text); }
 
     @media (max-width: 600px) {
       nav { padding: 14px 20px; }
+      .lang-bar { padding: 0 12px; }
       footer { padding: 24px 20px; }
     }
   </style>
@@ -149,106 +159,405 @@
     <div class="logo-icon">🚗</div>
     SG Theory Test
   </a>
-  <a class="nav-back" href="index.html">← Back to Home</a>
+  <a class="nav-back" href="index.html">← Home</a>
 </nav>
 
-<div class="page-header">
-  <div class="page-label">Legal</div>
-  <h1>Privacy Policy</h1>
-  <div class="updated">Last updated: March 2026</div>
+<!-- LANGUAGE SWITCHER -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="switchLang('en', this)">English</button>
+  <button class="lang-btn" onclick="switchLang('zh', this)">中文</button>
+  <button class="lang-btn" onclick="switchLang('ms', this)">Bahasa Malaysia</button>
+  <button class="lang-btn" onclick="switchLang('ta', this)">தமிழ்</button>
 </div>
 
-<main>
-
-  <div class="highlight-box">
-    <div class="hl-label">Summary</div>
-    <p>SG Theory Test does not collect, sell, or share your personal data with third parties. Your practice data stays on your device.</p>
+<!-- ═══════════════════════════════════════════
+     ENGLISH
+════════════════════════════════════════════ -->
+<div id="panel-en" class="lang-panel active" lang="en">
+  <div class="page-header">
+    <div class="page-label">Legal</div>
+    <h1>Privacy Policy</h1>
+    <div class="updated">Last updated: March 2026</div>
   </div>
-
-  <div class="section">
-    <h2>1. Introduction</h2>
-    <p>This Privacy Policy explains how SG Theory Test ("the App"), developed by Danny Goodman ("we", "us", or "our"), handles your information. We are committed to protecting your privacy.</p>
-    <p>By using the App, you agree to the practices described in this policy. If you do not agree, please discontinue use of the App.</p>
-  </div>
-
-  <div class="section">
-    <h2>2. Information We Collect</h2>
-    <p>We collect minimal information necessary to provide the App's features:</p>
-    <ul>
-      <li><strong>Usage Data (stored locally):</strong> Your quiz scores, progress, bookmarks, and practice history are stored entirely on your device and are not transmitted to us.</li>
-      <li><strong>Crash Reports:</strong> If the App crashes, anonymised diagnostic data may be collected via Apple's crash reporting system to help us fix bugs. This data does not include personally identifiable information.</li>
-      <li><strong>No Account Required:</strong> The App does not require you to create an account or provide any personal information to use its core features.</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>3. Information We Do NOT Collect</h2>
-    <p>We do not collect:</p>
-    <ul>
-      <li>Your name, email address, or contact information</li>
-      <li>Location data or GPS information</li>
-      <li>Device identifiers beyond what Apple's crash reporting uses</li>
-      <li>Payment information (all payments are handled securely by Apple)</li>
-      <li>Browsing history or data from other apps</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>4. How We Use Your Information</h2>
-    <p>The limited data we receive (anonymised crash reports) is used solely to:</p>
-    <ul>
-      <li>Identify and fix bugs and crashes in the App</li>
-      <li>Improve App stability and performance</li>
-    </ul>
-    <p>We do not use your data for advertising, marketing, or any commercial purposes.</p>
-  </div>
-
-  <div class="section">
-    <h2>5. Third-Party Services</h2>
-    <p>The App is distributed via Apple's App Store. Apple may collect certain data in accordance with their own privacy policy. We encourage you to review <a href="https://www.apple.com/legal/privacy/" style="color: var(--accent2);">Apple's Privacy Policy</a>.</p>
-    <p>We do not integrate any third-party analytics SDKs, advertising networks, or social media platforms in the App.</p>
-  </div>
-
-  <div class="section">
-    <h2>6. Data Storage & Security</h2>
-    <p>All your practice data (scores, progress, bookmarks) is stored locally on your device using standard iOS storage mechanisms. We do not have access to this data.</p>
-    <p>If you delete the App, all locally stored data is permanently removed from your device.</p>
-  </div>
-
-  <div class="section">
-    <h2>7. Children's Privacy</h2>
-    <p>The App is not directed at children under the age of 13. We do not knowingly collect personal information from children. The App is intended for use by individuals preparing for the Singapore driving theory test, who are typically 18 years of age or older.</p>
-  </div>
-
-  <div class="section">
-    <h2>8. Your Rights</h2>
-    <p>Since we do not collect personal data, there is generally no personal data to access, correct, or delete. If you have any concerns, please contact us and we will respond promptly.</p>
-  </div>
-
-  <div class="section">
-    <h2>9. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by updating the "Last updated" date at the top of this page. We encourage you to review this policy periodically.</p>
-  </div>
-
-  <div class="section">
-    <h2>10. Contact Us</h2>
-    <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:</p>
+  <main>
     <div class="highlight-box">
-      <div class="hl-label">Contact</div>
-      <p>Danny Goodman<br>
-      📧 <a href="mailto:hello@dannygoodman.net" style="color: var(--accent2);">hello@dannygoodman.net</a><br>
-      🌐 <a href="https://dannygoodman.net" style="color: var(--accent2);">dannygoodman.net</a></p>
+      <div class="hl-label">Summary</div>
+      <p>SG Theory Test does not collect, sell, or share your personal data with third parties. Your practice data stays on your device.</p>
     </div>
+
+    <div class="section">
+      <h2>1. Introduction</h2>
+      <p>This Privacy Policy explains how SG Theory Test ("the App"), developed by Danny Goodman ("we", "us", or "our"), handles your information. We are committed to protecting your privacy.</p>
+      <p>By using the App, you agree to the practices described in this policy. If you do not agree, please discontinue use of the App.</p>
+    </div>
+
+    <div class="section">
+      <h2>2. Information We Collect</h2>
+      <p>We collect minimal information necessary to provide the App's features:</p>
+      <ul>
+        <li><strong>Usage Data (stored locally):</strong> Your quiz scores, progress, bookmarks, and practice history are stored entirely on your device and are not transmitted to us.</li>
+        <li><strong>Crash Reports:</strong> If the App crashes, anonymised diagnostic data may be collected via Apple's crash reporting system to help us fix bugs. This data does not include personally identifiable information.</li>
+        <li><strong>No Account Required:</strong> The App does not require you to create an account or provide any personal information to use its core features.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. Information We Do NOT Collect</h2>
+      <p>We do not collect:</p>
+      <ul>
+        <li>Your name, email address, or contact information</li>
+        <li>Location data or GPS information</li>
+        <li>Device identifiers beyond what Apple's crash reporting uses</li>
+        <li>Payment information (all payments are handled securely by Apple)</li>
+        <li>Browsing history or data from other apps</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>4. How We Use Your Information</h2>
+      <p>The limited data we receive (anonymised crash reports) is used solely to:</p>
+      <ul>
+        <li>Identify and fix bugs and crashes in the App</li>
+        <li>Improve App stability and performance</li>
+      </ul>
+      <p>We do not use your data for advertising, marketing, or any commercial purposes.</p>
+    </div>
+
+    <div class="section">
+      <h2>5. Third-Party Services</h2>
+      <p>The App is distributed via Apple's App Store. Apple may collect certain data in accordance with their own privacy policy. We encourage you to review <a href="https://www.apple.com/legal/privacy/" style="color:var(--accent2)">Apple's Privacy Policy</a>.</p>
+      <p>We do not integrate any third-party analytics SDKs, advertising networks, or social media platforms in the App.</p>
+    </div>
+
+    <div class="section">
+      <h2>6. Data Storage &amp; Security</h2>
+      <p>All your practice data (scores, progress, bookmarks) is stored locally on your device using standard iOS storage mechanisms. We do not have access to this data.</p>
+      <p>If you delete the App, all locally stored data is permanently removed from your device.</p>
+    </div>
+
+    <div class="section">
+      <h2>7. Children's Privacy</h2>
+      <p>The App is not directed at children under the age of 13. We do not knowingly collect personal information from children. The App is intended for use by individuals preparing for the Singapore driving theory test, who are typically 18 years of age or older.</p>
+    </div>
+
+    <div class="section">
+      <h2>8. Your Rights</h2>
+      <p>Since we do not collect personal data, there is generally no personal data to access, correct, or delete. If you have any concerns, please contact us and we will respond promptly.</p>
+    </div>
+
+    <div class="section">
+      <h2>9. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by updating the "Last updated" date at the top of this page. We encourage you to review this policy periodically.</p>
+    </div>
+
+    <div class="section">
+      <h2>10. Contact Us</h2>
+      <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:</p>
+      <div class="highlight-box">
+        <div class="hl-label">Contact</div>
+        <p>Danny Goodman<br>
+        📧 <a href="mailto:hello@dannygoodman.net" style="color:var(--accent2)">hello@dannygoodman.net</a><br>
+        🌐 <a href="https://dannygoodman.net" style="color:var(--accent2)">dannygoodman.net</a></p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     中文
+════════════════════════════════════════════ -->
+<div id="panel-zh" class="lang-panel" lang="zh-Hans">
+  <div class="page-header">
+    <div class="page-label">法律条款</div>
+    <h1>隐私政策</h1>
+    <div class="updated">最后更新：2026年3月</div>
   </div>
+  <main>
+    <div class="highlight-box">
+      <div class="hl-label">简要说明</div>
+      <p>SG Theory Test 不会收集、出售或与第三方共享您的个人数据。您的练习数据仅保存在您的设备上。</p>
+    </div>
 
-</main>
+    <div class="section">
+      <h2>1. 简介</h2>
+      <p>本隐私政策说明了由 Danny Goodman（"我们"）开发的 SG Theory Test（"本应用"）如何处理您的信息。我们致力于保护您的隐私。</p>
+      <p>使用本应用即表示您同意本政策所描述的做法。如果您不同意，请停止使用本应用。</p>
+    </div>
 
+    <div class="section">
+      <h2>2. 我们收集的信息</h2>
+      <p>我们仅收集提供应用功能所必需的最少信息：</p>
+      <ul>
+        <li><strong>使用数据（本地存储）：</strong>您的测验分数、练习进度、书签和练习记录完全存储在您的设备上，不会传输给我们。</li>
+        <li><strong>崩溃报告：</strong>若应用崩溃，Apple 的崩溃报告系统可能会收集匿名诊断数据，以帮助我们修复问题。此数据不包含任何可识别个人身份的信息。</li>
+        <li><strong>无需注册账户：</strong>使用本应用的核心功能无需创建账户或提供任何个人信息。</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. 我们不收集的信息</h2>
+      <p>我们不收集以下信息：</p>
+      <ul>
+        <li>您的姓名、电子邮件地址或联系方式</li>
+        <li>位置数据或 GPS 信息</li>
+        <li>超出 Apple 崩溃报告所需的设备标识符</li>
+        <li>支付信息（所有支付均由 Apple 安全处理）</li>
+        <li>浏览记录或其他应用的数据</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>4. 我们如何使用您的信息</h2>
+      <p>我们收到的有限数据（匿名崩溃报告）仅用于：</p>
+      <ul>
+        <li>识别并修复应用中的错误和崩溃问题</li>
+        <li>提升应用的稳定性和性能</li>
+      </ul>
+      <p>我们不会将您的数据用于广告、营销或任何商业目的。</p>
+    </div>
+
+    <div class="section">
+      <h2>5. 第三方服务</h2>
+      <p>本应用通过 Apple App Store 分发。Apple 可能会依据其隐私政策收集某些数据。我们建议您查阅 <a href="https://www.apple.com/legal/privacy/" style="color:var(--accent2)">Apple 隐私政策</a>。</p>
+      <p>我们未在应用中集成任何第三方分析 SDK、广告网络或社交媒体平台。</p>
+    </div>
+
+    <div class="section">
+      <h2>6. 数据存储与安全</h2>
+      <p>您的所有练习数据（分数、进度、书签）均通过标准 iOS 存储机制本地保存在您的设备上。我们无法访问这些数据。</p>
+      <p>如果您删除本应用，所有本地存储的数据将从您的设备上永久删除。</p>
+    </div>
+
+    <div class="section">
+      <h2>7. 儿童隐私</h2>
+      <p>本应用不面向13岁以下的儿童。我们不会有意收集儿童的个人信息。本应用面向准备参加新加坡驾驶理论考试的人士，通常为18岁及以上。</p>
+    </div>
+
+    <div class="section">
+      <h2>8. 您的权利</h2>
+      <p>由于我们不收集个人数据，通常没有需要访问、更正或删除的个人数据。如有任何疑虑，请联系我们，我们将及时回复。</p>
+    </div>
+
+    <div class="section">
+      <h2>9. 本政策的变更</h2>
+      <p>我们可能会不时更新本隐私政策。重大变更时，我们将通过更新页面顶部的"最后更新"日期来通知您。建议您定期查阅本政策。</p>
+    </div>
+
+    <div class="section">
+      <h2>10. 联系我们</h2>
+      <p>如果您对本隐私政策或我们的数据处理方式有任何疑问，请联系我们：</p>
+      <div class="highlight-box">
+        <div class="hl-label">联系方式</div>
+        <p>Danny Goodman<br>
+        📧 <a href="mailto:hello@dannygoodman.net" style="color:var(--accent2)">hello@dannygoodman.net</a><br>
+        🌐 <a href="https://dannygoodman.net" style="color:var(--accent2)">dannygoodman.net</a></p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     BAHASA MALAYSIA
+════════════════════════════════════════════ -->
+<div id="panel-ms" class="lang-panel" lang="ms">
+  <div class="page-header">
+    <div class="page-label">Undang-undang</div>
+    <h1>Dasar Privasi</h1>
+    <div class="updated">Dikemas kini: Mac 2026</div>
+  </div>
+  <main>
+    <div class="highlight-box">
+      <div class="hl-label">Ringkasan</div>
+      <p>SG Theory Test tidak mengumpul, menjual, atau berkongsi data peribadi anda dengan pihak ketiga. Data latihan anda kekal di peranti anda.</p>
+    </div>
+
+    <div class="section">
+      <h2>1. Pengenalan</h2>
+      <p>Dasar Privasi ini menerangkan cara SG Theory Test ("Aplikasi"), yang dibangunkan oleh Danny Goodman ("kami"), mengendalikan maklumat anda. Kami komited untuk melindungi privasi anda.</p>
+      <p>Dengan menggunakan Aplikasi ini, anda bersetuju dengan amalan yang diterangkan dalam dasar ini. Jika anda tidak bersetuju, sila hentikan penggunaan Aplikasi.</p>
+    </div>
+
+    <div class="section">
+      <h2>2. Maklumat yang Kami Kumpul</h2>
+      <p>Kami mengumpul maklumat minimum yang diperlukan untuk menyediakan ciri-ciri Aplikasi:</p>
+      <ul>
+        <li><strong>Data Penggunaan (disimpan secara tempatan):</strong> Skor kuiz, kemajuan, penanda buku, dan sejarah latihan anda disimpan sepenuhnya di peranti anda dan tidak dihantar kepada kami.</li>
+        <li><strong>Laporan Ranap:</strong> Jika Aplikasi ranap, data diagnostik tanpa nama mungkin dikumpul melalui sistem pelaporan ranap Apple untuk membantu kami membaiki pepijat. Data ini tidak mengandungi maklumat pengenalan peribadi.</li>
+        <li><strong>Tiada Akaun Diperlukan:</strong> Aplikasi ini tidak memerlukan anda membuat akaun atau memberikan sebarang maklumat peribadi untuk menggunakan ciri-ciri utamanya.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. Maklumat yang Tidak Kami Kumpul</h2>
+      <p>Kami tidak mengumpul:</p>
+      <ul>
+        <li>Nama, alamat e-mel, atau maklumat hubungan anda</li>
+        <li>Data lokasi atau maklumat GPS</li>
+        <li>Pengecam peranti melebihi apa yang digunakan oleh pelaporan ranap Apple</li>
+        <li>Maklumat pembayaran (semua pembayaran dikendalikan secara selamat oleh Apple)</li>
+        <li>Sejarah penyemakan imbas atau data daripada aplikasi lain</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>4. Cara Kami Menggunakan Maklumat Anda</h2>
+      <p>Data terhad yang kami terima (laporan ranap tanpa nama) digunakan semata-mata untuk:</p>
+      <ul>
+        <li>Mengenal pasti dan membaiki pepijat serta ranap dalam Aplikasi</li>
+        <li>Meningkatkan kestabilan dan prestasi Aplikasi</li>
+      </ul>
+      <p>Kami tidak menggunakan data anda untuk pengiklanan, pemasaran, atau sebarang tujuan komersial.</p>
+    </div>
+
+    <div class="section">
+      <h2>5. Perkhidmatan Pihak Ketiga</h2>
+      <p>Aplikasi ini diedarkan melalui App Store Apple. Apple mungkin mengumpul data tertentu mengikut dasar privasi mereka sendiri. Kami menggalakkan anda untuk menyemak <a href="https://www.apple.com/legal/privacy/" style="color:var(--accent2)">Dasar Privasi Apple</a>.</p>
+      <p>Kami tidak mengintegrasikan sebarang SDK analitik pihak ketiga, rangkaian pengiklanan, atau platform media sosial dalam Aplikasi.</p>
+    </div>
+
+    <div class="section">
+      <h2>6. Penyimpanan Data &amp; Keselamatan</h2>
+      <p>Semua data latihan anda (skor, kemajuan, penanda buku) disimpan secara tempatan di peranti anda menggunakan mekanisme storan iOS standard. Kami tidak mempunyai akses kepada data ini.</p>
+      <p>Jika anda memadamkan Aplikasi, semua data yang disimpan secara tempatan akan dipadamkan secara kekal daripada peranti anda.</p>
+    </div>
+
+    <div class="section">
+      <h2>7. Privasi Kanak-kanak</h2>
+      <p>Aplikasi ini tidak ditujukan kepada kanak-kanak bawah 13 tahun. Kami tidak secara sengaja mengumpul maklumat peribadi daripada kanak-kanak. Aplikasi ini ditujukan untuk individu yang bersedia untuk ujian teori memandu Singapura, yang biasanya berumur 18 tahun ke atas.</p>
+    </div>
+
+    <div class="section">
+      <h2>8. Hak Anda</h2>
+      <p>Memandangkan kami tidak mengumpul data peribadi, umumnya tiada data peribadi untuk diakses, diperbetulkan, atau dipadamkan. Jika anda mempunyai sebarang kebimbangan, sila hubungi kami dan kami akan bertindak balas dengan segera.</p>
+    </div>
+
+    <div class="section">
+      <h2>9. Perubahan kepada Dasar Ini</h2>
+      <p>Kami mungkin mengemas kini Dasar Privasi ini dari semasa ke semasa. Kami akan memberitahu anda tentang perubahan ketara dengan mengemas kini tarikh "Dikemas kini" di bahagian atas halaman ini. Kami menggalakkan anda untuk menyemak dasar ini secara berkala.</p>
+    </div>
+
+    <div class="section">
+      <h2>10. Hubungi Kami</h2>
+      <p>Jika anda mempunyai sebarang soalan atau kebimbangan tentang Dasar Privasi ini atau amalan data kami, sila hubungi kami:</p>
+      <div class="highlight-box">
+        <div class="hl-label">Hubungi</div>
+        <p>Danny Goodman<br>
+        📧 <a href="mailto:hello@dannygoodman.net" style="color:var(--accent2)">hello@dannygoodman.net</a><br>
+        🌐 <a href="https://dannygoodman.net" style="color:var(--accent2)">dannygoodman.net</a></p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     தமிழ்
+════════════════════════════════════════════ -->
+<div id="panel-ta" class="lang-panel" lang="ta">
+  <div class="page-header">
+    <div class="page-label">சட்டம்</div>
+    <h1>தனியுரிமைக் கொள்கை</h1>
+    <div class="updated">கடைசியாக புதுப்பிக்கப்பட்டது: மார்ச் 2026</div>
+  </div>
+  <main>
+    <div class="highlight-box">
+      <div class="hl-label">சுருக்கம்</div>
+      <p>SG Theory Test உங்கள் தனிப்பட்ட தரவை சேகரிக்காது, விற்காது அல்லது மூன்றாம் தரப்பினருடன் பகிர்ந்து கொள்ளாது. உங்கள் பயிற்சி தரவு உங்கள் சாதனத்திலேயே இருக்கும்.</p>
+    </div>
+
+    <div class="section">
+      <h2>1. அறிமுகம்</h2>
+      <p>இந்த தனியுரிமைக் கொள்கை, Danny Goodman ("நாங்கள்") உருவாக்கிய SG Theory Test ("பயன்பாடு") உங்கள் தகவல்களை எவ்வாறு கையாளுகிறது என்பதை விளக்குகிறது. உங்கள் தனியுரிமையை பாதுகாக்க நாங்கள் உறுதிபூண்டுள்ளோம்.</p>
+      <p>பயன்பாட்டை பயன்படுத்துவதன் மூலம், இந்தக் கொள்கையில் விவரிக்கப்பட்ட நடைமுறைகளுக்கு நீங்கள் ஒப்புக்கொள்கிறீர்கள். நீங்கள் ஒப்புக்கொள்ளவில்லை என்றால், பயன்பாட்டைப் பயன்படுத்துவதை நிறுத்தவும்.</p>
+    </div>
+
+    <div class="section">
+      <h2>2. நாங்கள் சேகரிக்கும் தகவல்கள்</h2>
+      <p>பயன்பாட்டின் அம்சங்களை வழங்க தேவையான குறைந்தபட்ச தகவல்களை மட்டுமே நாங்கள் சேகரிக்கிறோம்:</p>
+      <ul>
+        <li><strong>பயன்பாட்டு தரவு (உள்ளூரில் சேமிக்கப்பட்டது):</strong> உங்கள் வினாடி வினா மதிப்பெண்கள், முன்னேற்றம், புத்தகக்குறிகள் மற்றும் பயிற்சி வரலாறு ஆகியவை முழுவதுமாக உங்கள் சாதனத்தில் சேமிக்கப்படுகின்றன, நமக்கு அனுப்பப்படுவதில்லை.</li>
+        <li><strong>செயலிழப்பு அறிக்கைகள்:</strong> பயன்பாடு செயலிழந்தால், Apple இன் செயலிழப்பு அறிக்கையிடல் அமைப்பு மூலம் அநாமதேய நோயறிதல் தரவு சேகரிக்கப்படலாம். இந்தத் தரவில் தனிப்பட்ட அடையாளம் காணக்கூடிய தகவல்கள் இல்லை.</li>
+        <li><strong>கணக்கு தேவையில்லை:</strong> முக்கிய அம்சங்களைப் பயன்படுத்த கணக்கை உருவாக்கவோ அல்லது தனிப்பட்ட தகவல்களை வழங்கவோ தேவையில்லை.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. நாங்கள் சேகரிக்காத தகவல்கள்</h2>
+      <p>நாங்கள் பின்வருவனவற்றை சேகரிக்கவில்லை:</p>
+      <ul>
+        <li>உங்கள் பெயர், மின்னஞ்சல் முகவரி அல்லது தொடர்பு தகவல்</li>
+        <li>இருப்பிட தரவு அல்லது GPS தகவல்</li>
+        <li>Apple இன் செயலிழப்பு அறிக்கையிடல் பயன்படுத்துவதற்கு அப்பால் சாதன அடையாளங்காட்டிகள்</li>
+        <li>கட்டண தகவல் (அனைத்து கட்டணங்களும் Apple ஆல் பாதுகாப்பாக கையாளப்படுகின்றன)</li>
+        <li>உலாவல் வரலாறு அல்லது பிற பயன்பாடுகளின் தரவு</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>4. உங்கள் தகவல்களை நாங்கள் எவ்வாறு பயன்படுத்துகிறோம்</h2>
+      <p>நாங்கள் பெறும் வரையறுக்கப்பட்ட தரவு (அநாமதேய செயலிழப்பு அறிக்கைகள்) மட்டுமே பயன்படுத்தப்படுகிறது:</p>
+      <ul>
+        <li>பயன்பாட்டிலுள்ள பிழைகள் மற்றும் செயலிழப்புகளை கண்டறிந்து சரிசெய்ய</li>
+        <li>பயன்பாட்டின் நிலைத்தன்மை மற்றும் செயல்திறனை மேம்படுத்த</li>
+      </ul>
+      <p>விளம்பரம், சந்தைப்படுத்தல் அல்லது வணிக நோக்கங்களுக்கு உங்கள் தரவை நாங்கள் பயன்படுத்துவதில்லை.</p>
+    </div>
+
+    <div class="section">
+      <h2>5. மூன்றாம் தரப்பு சேவைகள்</h2>
+      <p>இந்த பயன்பாடு Apple App Store வழியாக விநியோகிக்கப்படுகிறது. Apple தங்கள் சொந்த தனியுரிமைக் கொள்கையின்படி சில தரவுகளை சேகரிக்கலாம். <a href="https://www.apple.com/legal/privacy/" style="color:var(--accent2)">Apple இன் தனியுரிமைக் கொள்கையை</a> பார்க்க பரிந்துரைக்கிறோம்.</p>
+      <p>பயன்பாட்டில் எந்த மூன்றாம் தரப்பு பகுப்பாய்வு SDK, விளம்பர நெட்வொர்க் அல்லது சமூக ஊடக தளங்களையும் நாங்கள் ஒருங்கிணைக்கவில்லை.</p>
+    </div>
+
+    <div class="section">
+      <h2>6. தரவு சேமிப்பு மற்றும் பாதுகாப்பு</h2>
+      <p>உங்கள் அனைத்து பயிற்சி தரவும் (மதிப்பெண்கள், முன்னேற்றம், புத்தகக்குறிகள்) நிலையான iOS சேமிப்பு முறைகளைப் பயன்படுத்தி உங்கள் சாதனத்தில் உள்ளூரில் சேமிக்கப்படுகின்றன. இந்தத் தரவை அணுக எங்களுக்கு அணுகல் இல்லை.</p>
+      <p>பயன்பாட்டை நீக்கினால், உள்ளூரில் சேமிக்கப்பட்ட அனைத்து தரவும் உங்கள் சாதனத்திலிருந்து நிரந்தரமாக அகற்றப்படும்.</p>
+    </div>
+
+    <div class="section">
+      <h2>7. குழந்தைகளின் தனியுரிமை</h2>
+      <p>இந்த பயன்பாடு 13 வயதுக்குட்பட்ட குழந்தைகளுக்கு இயக்கப்படவில்லை. குழந்தைகளிடமிருந்து தனிப்பட்ட தகவல்களை நாங்கள் தெரிந்தே சேகரிப்பதில்லை. இந்த பயன்பாடு சிங்கப்பூர் வாகன இயக்க கோட்பாட்டு தேர்விற்கு தயாராவோருக்கு வடிவமைக்கப்பட்டுள்ளது, பொதுவாக 18 வயது அல்லது அதிகமானோர்.</p>
+    </div>
+
+    <div class="section">
+      <h2>8. உங்கள் உரிமைகள்</h2>
+      <p>நாங்கள் தனிப்பட்ட தரவை சேகரிக்காததால், பொதுவாக அணுக, திருத்த அல்லது நீக்க தனிப்பட்ட தரவு எதுவும் இல்லை. ஏதேனும் கவலைகள் இருந்தால், எங்களை தொடர்பு கொள்ளவும், நாங்கள் உடனே பதிலளிப்போம்.</p>
+    </div>
+
+    <div class="section">
+      <h2>9. இந்தக் கொள்கையில் மாற்றங்கள்</h2>
+      <p>நாங்கள் அவ்வப்போது இந்த தனியுரிமைக் கொள்கையை புதுப்பிக்கலாம். இந்தப் பக்கத்தின் மேலே உள்ள "கடைசியாக புதுப்பிக்கப்பட்டது" தேதியை புதுப்பிப்பதன் மூலம் குறிப்பிடத்தக்க மாற்றங்களை உங்களுக்கு தெரிவிப்போம். இந்தக் கொள்கையை அவ்வப்போது மதிப்பாய்வு செய்ய பரிந்துரைக்கிறோம்.</p>
+    </div>
+
+    <div class="section">
+      <h2>10. எங்களை தொடர்பு கொள்ளுங்கள்</h2>
+      <p>இந்த தனியுரிமைக் கொள்கை அல்லது எங்கள் தரவு நடைமுறைகள் பற்றி ஏதேனும் கேள்விகள் அல்லது கவலைகள் இருந்தால், தொடர்பு கொள்ளவும்:</p>
+      <div class="highlight-box">
+        <div class="hl-label">தொடர்பு</div>
+        <p>Danny Goodman<br>
+        📧 <a href="mailto:hello@dannygoodman.net" style="color:var(--accent2)">hello@dannygoodman.net</a><br>
+        🌐 <a href="https://dannygoodman.net" style="color:var(--accent2)">dannygoodman.net</a></p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- FOOTER -->
 <footer>
   <div>© 2026 Danny Goodman · SG Theory Test</div>
-  <div>
-    <a href="index.html">Home</a>
-  </div>
+  <div><a href="index.html">Home</a></div>
 </footer>
+
+<script>
+  function switchLang(lang, btn) {
+    document.querySelectorAll('.lang-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + lang).classList.add('active');
+    btn.classList.add('active');
+    document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : lang;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
 
 </body>
 </html>
