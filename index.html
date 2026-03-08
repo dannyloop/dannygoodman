@@ -3,281 +3,295 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SG Theory Test – Pass Your Singapore Driving Theory Test</title>
-  <meta name="description" content="Ace your Singapore Basic Theory Test and Final Theory Test with SG Theory Test. Practice with real exam questions, detailed explanations, and smart revision tools.">
+  <title>SG Theory Test – Singapore Driving Theory Exam App</title>
+  <meta name="description" content="Ace your Singapore Basic Theory Test and Final Theory Test. Practice with real exam questions and smart revision tools.">
   <meta property="og:title" content="SG Theory Test">
   <meta property="og:description" content="Ace your Singapore driving theory test with confidence.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0d0f14;
-      --bg2: #13161e;
-      --bg3: #1a1e28;
-      --border: rgba(255,255,255,0.08);
-      --accent: #3b82f6;
-      --accent2: #60a5fa;
-      --green: #22c55e;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
-      --radius: 16px;
+      --bg:      #141218;
+      --bg2:     #1E1B25;
+      --bg3:     #272332;
+      --border:  rgba(255,255,255,0.07);
+      --red:     #D93025;
+      --red-l:   #F05048;
+      --amber:   #D98C0A;
+      --amber-l: #F0A820;
+      --text:    #EDEAF4;
+      --muted:   #9490A6;
+      --radius:  12px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Noto Sans SC', 'Noto Sans Tamil', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 40px;
-      background: rgba(13,15,20,0.85);
-      backdrop-filter: blur(12px);
+      padding: 0 40px; height: 60px;
+      background: rgba(20,18,24,0.9);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
+    .nav-left { display: flex; align-items: center; gap: 32px; }
     .nav-logo {
       display: flex; align-items: center; gap: 10px;
-      font-weight: 700; font-size: 1.1rem;
+      font-weight: 800; font-size: 1rem; letter-spacing: -0.01em;
       text-decoration: none; color: var(--text);
     }
-    .nav-logo .logo-icon {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+    .logo-mark {
+      width: 30px; height: 30px; border-radius: 7px;
+      background: var(--red);
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
     }
+    .logo-mark svg { width: 16px; height: 16px; fill: #fff; }
+    .lang-nav { display: flex; gap: 2px; }
+    .lang-nav-btn {
+      padding: 5px 10px; border-radius: 6px;
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--muted); background: none; border: none; cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+    .lang-nav-btn:hover { color: var(--text); background: var(--bg3); }
+    .lang-nav-btn.active { color: var(--text); background: var(--bg3); }
     .nav-cta {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px; border-radius: 10px;
-      background: var(--accent); color: #fff;
-      font-weight: 600; font-size: 0.9rem;
+      padding: 8px 18px; border-radius: 8px;
+      background: var(--red); color: #fff;
+      font-weight: 600; font-size: 0.85rem;
       text-decoration: none;
       transition: background 0.2s, transform 0.15s;
     }
-    .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+    .nav-cta:hover { background: var(--red-l); transform: translateY(-1px); }
 
-    /* HERO */
+    /* ── LANG PANELS ── */
+    .lang-panel { display: none; }
+    .lang-panel.active { display: block; }
+
+    /* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
       text-align: center;
       padding: 120px 20px 80px;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,0.15) 0%, transparent 70%),
-                  radial-gradient(ellipse 60% 40% at 80% 80%, rgba(139,92,246,0.1) 0%, transparent 60%);
-      pointer-events: none;
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% -10%, rgba(217,48,37,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 80% 90%, rgba(217,140,10,0.07) 0%, transparent 50%);
     }
+    .hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 100px;
-      background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3);
-      font-size: 0.8rem; font-weight: 600; color: var(--accent2);
-      margin-bottom: 24px;
-      letter-spacing: 0.05em; text-transform: uppercase;
+      display: inline-block;
+      padding: 5px 14px; border-radius: 100px;
+      background: rgba(217,48,37,0.1); border: 1px solid rgba(217,48,37,0.25);
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--red-l);
+      margin-bottom: 28px;
     }
     .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 800; line-height: 1.15;
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 800; line-height: 1.12;
+      letter-spacing: -0.025em;
       margin-bottom: 20px;
-      letter-spacing: -0.02em;
     }
-    .hero h1 span {
-      background: linear-gradient(90deg, var(--accent), #a78bfa);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    .hero h1 em {
+      font-style: normal;
+      color: var(--red-l);
     }
     .hero p {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      color: var(--muted); max-width: 540px; margin: 0 auto 40px;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--muted); max-width: 480px;
+      margin: 0 auto 40px; line-height: 1.7;
     }
-    .hero-buttons {
-      display: flex; flex-wrap: wrap; gap: 14px;
-      justify-content: center; margin-bottom: 60px;
+    .hero-btns {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: center; margin-bottom: 64px;
     }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 15px 28px; border-radius: 12px;
-      background: var(--accent); color: #fff;
-      font-weight: 700; font-size: 1rem;
+      padding: 14px 26px; border-radius: 10px;
+      background: var(--red); color: #fff;
+      font-weight: 700; font-size: 0.95rem;
       text-decoration: none;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(59,130,246,0.3);
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(217,48,37,0.25);
     }
-    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(59,130,246,0.4); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 15px 28px; border-radius: 12px;
+    .btn-primary:hover { background: var(--red-l); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 26px; border-radius: 10px;
       border: 1px solid var(--border); color: var(--text);
-      font-weight: 600; font-size: 1rem;
-      text-decoration: none; background: var(--bg3);
+      font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; background: var(--bg2);
       transition: border-color 0.2s, transform 0.15s;
     }
-    .btn-secondary:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-2px); }
 
     /* STATS */
-    .stats {
-      display: flex; flex-wrap: wrap; gap: 32px;
-      justify-content: center;
-    }
-    .stat { text-align: center; }
-    .stat .num { font-size: 1.8rem; font-weight: 800; color: var(--text); }
-    .stat .label { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+    .stat .num { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em; }
+    .stat .num span { color: var(--red-l); }
+    .stat .lbl { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
 
-    /* PHONE MOCKUP */
-    .mockup-section {
-      padding: 40px 20px 100px;
+    /* ── MOCKUP ── */
+    .mockup-wrap {
+      padding: 20px 20px 100px;
       display: flex; justify-content: center;
     }
     .phone {
-      width: 260px; height: 520px;
-      border-radius: 40px;
-      border: 2px solid rgba(255,255,255,0.12);
+      width: 252px; height: 510px;
+      border-radius: 38px;
+      border: 1.5px solid rgba(255,255,255,0.1);
       background: var(--bg2);
-      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
-      position: relative; overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.55);
       display: flex; flex-direction: column;
+      overflow: hidden;
     }
-    .phone-notch {
-      width: 100px; height: 28px; border-radius: 0 0 16px 16px;
-      background: var(--bg); margin: 0 auto;
-      display: flex; align-items: center; justify-content: center;
+    .ph-notch {
+      height: 26px; flex-shrink: 0;
+      background: var(--bg);
+      display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: 4px;
     }
-    .phone-screen {
-      flex: 1; padding: 16px;
-      display: flex; flex-direction: column; gap: 10px;
+    .ph-pill { width: 80px; height: 5px; border-radius: 3px; background: var(--bg3); }
+    .ph-body { flex: 1; padding: 14px 14px 10px; display: flex; flex-direction: column; gap: 10px; }
+    .ph-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .ph-title { font-size: 0.9rem; font-weight: 700; }
+    .ph-prog { height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+    .ph-prog-fill { height: 100%; width: 68%; background: var(--red); border-radius: 2px; }
+    .ph-card {
+      background: var(--bg3); border-radius: 10px; padding: 12px;
+      flex: 1;
     }
-    .phone-header { font-size: 0.75rem; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
-    .phone-title { font-size: 1rem; font-weight: 700; }
-    .q-card {
-      background: var(--bg3); border-radius: 12px; padding: 12px;
-      border: 1px solid var(--border);
-    }
-    .q-card .q-text { font-size: 0.75rem; color: var(--text); margin-bottom: 10px; line-height: 1.4; }
-    .q-option {
+    .ph-q { font-size: 0.72rem; color: var(--text); margin-bottom: 10px; line-height: 1.5; }
+    .ph-opt {
       display: flex; align-items: center; gap: 8px;
-      padding: 7px 10px; border-radius: 8px; margin-bottom: 5px;
-      font-size: 0.72rem; cursor: default;
+      padding: 6px 9px; border-radius: 7px; margin-bottom: 5px;
+      font-size: 0.68rem;
     }
-    .q-option.correct { background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); }
-    .q-option.wrong { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); }
-    .q-option.neutral { background: var(--bg2); border: 1px solid var(--border); }
-    .q-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .dot-green { background: var(--green); }
-    .dot-red { background: #ef4444; }
-    .dot-gray { background: #475569; }
-    .progress-bar { height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; margin-top: 8px; }
-    .progress-fill { height: 100%; width: 72%; background: linear-gradient(90deg, var(--accent), #a78bfa); border-radius: 2px; }
-    .phone-footer { font-size: 0.65rem; color: var(--muted); text-align: center; }
+    .ph-opt.c { background: rgba(72,187,120,0.13); border: 1px solid rgba(72,187,120,0.3); }
+    .ph-opt.w { background: rgba(220,80,70,0.1); border: 1px solid rgba(220,80,70,0.25); }
+    .ph-opt.n { background: var(--bg2); border: 1px solid var(--border); }
+    .ph-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .ph-foot { font-size: 0.62rem; color: var(--muted); text-align: center; padding-top: 4px; }
+
+    /* ── SECTIONS ── */
+    .section-wrap { max-width: 1080px; margin: 0 auto; padding: 80px 24px; }
+    .s-eyebrow {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--amber-l); margin-bottom: 12px;
+    }
+    .s-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px;
+    }
+    .s-sub { color: var(--muted); font-size: 1rem; max-width: 480px; line-height: 1.7; }
+
+    .divider { border: none; border-top: 1px solid var(--border); }
 
     /* FEATURES */
-    section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.1em; color: var(--accent2); margin-bottom: 12px;
-    }
-    .section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
-    .section-sub { color: var(--muted); font-size: 1.05rem; max-width: 520px; }
-
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px; margin-top: 48px;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 16px; margin-top: 44px;
     }
-    .feature-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
+    .f-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 26px;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .feature-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-3px); }
-    .feature-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin-bottom: 16px;
+    .f-card:hover { border-color: rgba(217,48,37,0.3); transform: translateY(-3px); }
+    .f-num {
+      font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em;
+      color: var(--red); opacity: 0.35; line-height: 1;
+      margin-bottom: 12px;
     }
-    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .feature-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .f-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 7px; }
+    .f-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
 
     /* TOPICS */
     .topics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 12px; margin-top: 40px;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 10px; margin-top: 40px;
     }
-    .topic-chip {
+    .t-chip {
       background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 10px; padding: 14px 16px;
-      font-size: 0.88rem; font-weight: 500;
+      border-radius: 9px; padding: 12px 14px;
+      font-size: 0.84rem; font-weight: 500; color: var(--muted);
       display: flex; align-items: center; gap: 10px;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, color 0.2s;
     }
-    .topic-chip:hover { border-color: rgba(59,130,246,0.3); }
-    .topic-chip .tc-icon { font-size: 18px; }
+    .t-chip:hover { border-color: rgba(217,48,37,0.25); color: var(--text); }
+    .t-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--red); flex-shrink: 0;
+    }
 
-    /* DIVIDER */
-    .divider { border: none; border-top: 1px solid var(--border); }
-
-    /* CTA SECTION */
+    /* CTA */
     .cta-section {
-      text-align: center; padding: 100px 20px;
+      text-align: center; padding: 100px 24px;
       position: relative; overflow: hidden;
     }
     .cta-section::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(59,130,246,0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(217,48,37,0.06) 0%, transparent 65%);
       pointer-events: none;
     }
-    .cta-section h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -0.02em; }
-    .cta-section p { color: var(--muted); font-size: 1.05rem; margin-bottom: 36px; }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px;
+    }
+    .cta-section > p { color: var(--muted); font-size: 1rem; margin-bottom: 36px; }
 
-    /* APPSTORE BADGE */
     .appstore-btn {
       display: inline-flex; align-items: center; gap: 12px;
-      padding: 14px 28px; border-radius: 14px;
-      background: var(--text); color: #0d0f14;
+      padding: 14px 28px; border-radius: 12px;
+      background: var(--text); color: #141218;
       text-decoration: none; font-weight: 700;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
       transition: opacity 0.2s, transform 0.15s;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
-    .appstore-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-    .appstore-btn svg { width: 24px; height: 24px; }
-    .appstore-btn .as-text { text-align: left; line-height: 1.2; }
-    .appstore-btn .as-sub { font-size: 0.7rem; font-weight: 400; opacity: 0.7; }
-    .appstore-btn .as-main { font-size: 1rem; font-weight: 700; }
+    .appstore-btn:hover { opacity: 0.92; transform: translateY(-2px); }
+    .appstore-btn svg { width: 22px; height: 22px; }
+    .as-sub { font-size: 0.68rem; font-weight: 400; opacity: 0.6; line-height: 1; }
+    .as-main { font-size: 0.95rem; font-weight: 800; line-height: 1.3; }
 
     /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
-      padding: 32px 40px;
-      display: flex; flex-wrap: wrap; gap: 16px;
+      padding: 28px 40px;
+      display: flex; flex-wrap: wrap; gap: 14px;
       align-items: center; justify-content: space-between;
-      color: var(--muted); font-size: 0.85rem;
+      color: var(--muted); font-size: 0.82rem;
     }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--text); }
     .footer-links { display: flex; gap: 20px; }
 
-    @media (max-width: 600px) {
-      nav { padding: 14px 20px; }
-      footer { padding: 24px 20px; }
-      .stats { gap: 20px; }
+    @media (max-width: 640px) {
+      nav { padding: 0 16px; }
+      .nav-left { gap: 12px; }
+      footer { padding: 24px 16px; }
+      .lang-nav-btn { padding: 5px 7px; font-size: 0.75rem; }
     }
   </style>
 </head>
@@ -285,135 +299,393 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
-    <div class="logo-icon">🚗</div>
-    SG Theory Test
-  </a>
-  <a class="nav-cta" href="#download">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-    Download
+  <div class="nav-left">
+    <a class="nav-logo" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 0 0-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 0 0-6-6zm0 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+      </div>
+      SG Theory Test
+    </a>
+    <div class="lang-nav">
+      <button class="lang-nav-btn active" onclick="switchLang('en',this)">EN</button>
+      <button class="lang-nav-btn" onclick="switchLang('zh',this)">中文</button>
+      <button class="lang-nav-btn" onclick="switchLang('ms',this)">BM</button>
+      <button class="lang-nav-btn" onclick="switchLang('ta',this)">TA</button>
+    </div>
+  </div>
+  <a class="nav-cta" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    <span class="nav-cta-label">Download</span>
   </a>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div>
-    <div class="hero-badge">🇸🇬 Singapore Driving Theory</div>
-    <h1>Pass Your Theory Test<br><span>First Time, Every Time</span></h1>
-    <p>Master the BTT and FTT with real exam questions, detailed explanations, and smart practice tools — all in one app.</p>
-    <div class="hero-buttons">
-      <a class="btn-primary" href="#download">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Download on App Store
-      </a>
-      <a class="btn-secondary" href="#features">Learn More →</a>
-    </div>
-    <div class="stats">
-      <div class="stat"><div class="num">500+</div><div class="label">Practice Questions</div></div>
-      <div class="stat"><div class="num">BTT & FTT</div><div class="label">Both Tests Covered</div></div>
-      <div class="stat"><div class="num">Free</div><div class="label">Core Content</div></div>
-    </div>
-  </div>
-</div>
+<!-- ════════════════ ENGLISH ════════════════ -->
+<div id="panel-en" class="lang-panel active" lang="en">
 
-<!-- PHONE MOCKUP -->
-<div class="mockup-section">
-  <div class="phone">
-    <div class="phone-notch"></div>
-    <div class="phone-screen">
-      <div class="phone-header">BTT Practice</div>
-      <div class="phone-title">Question 12 / 50</div>
-      <div class="progress-bar"><div class="progress-fill"></div></div>
-      <div class="q-card">
-        <div class="q-text">What should you do when approaching a pedestrian crossing with people waiting?</div>
-        <div class="q-option correct"><div class="q-dot dot-green"></div>Slow down and stop if needed</div>
-        <div class="q-option wrong"><div class="q-dot dot-red"></div>Speed up to pass before them</div>
-        <div class="q-option neutral"><div class="q-dot dot-gray"></div>Sound horn to warn them</div>
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">Singapore Driving Theory</div>
+      <h1>Pass Your Theory Test —<br><em>First Time, Every Time</em></h1>
+      <p>Master the BTT and FTT with real exam questions, detailed explanations, and smart practice tools — all in one app.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download on App Store
+        </a>
+        <a class="btn-ghost" href="#features-en">See Features</a>
       </div>
-      <div class="phone-footer">✅ Correct! Tap to continue →</div>
+      <div class="stats">
+        <div class="stat"><div class="num"><span>500</span>+</div><div class="lbl">Practice Questions</div></div>
+        <div class="stat"><div class="num">BTT &amp; FTT</div><div class="lbl">Both Tests Covered</div></div>
+        <div class="stat"><div class="num">Free</div><div class="lbl">To Get Started</div></div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- FEATURES -->
-<section id="features">
-  <div class="section-label">Features</div>
-  <div class="section-title">Everything you need to pass</div>
-  <div class="section-sub">Designed to help Singapore learner drivers study smarter and pass with confidence.</div>
-
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon" style="background:rgba(59,130,246,0.12)">📝</div>
-      <h3>Real Exam Questions</h3>
-      <p>Practice with questions styled after the actual BTT and FTT exams. No surprises on test day.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon" style="background:rgba(34,197,94,0.12)">💡</div>
-      <h3>Detailed Explanations</h3>
-      <p>Understand the why behind every answer. Explanations are clear and easy to remember.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon" style="background:rgba(168,85,247,0.12)">📊</div>
-      <h3>Progress Tracking</h3>
-      <p>See your score improve over time. Identify weak topics and focus your revision where it matters.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon" style="background:rgba(245,158,11,0.12)">⏱️</div>
-      <h3>Timed Mock Tests</h3>
-      <p>Simulate real exam conditions with timed full-length tests. Build speed and confidence.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon" style="background:rgba(239,68,68,0.12)">🔖</div>
-      <h3>Bookmark & Review</h3>
-      <p>Save tricky questions for later review. Master every question before you sit the real exam.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon" style="background:rgba(16,185,129,0.12)">📱</div>
-      <h3>Offline Access</h3>
-      <p>Study anywhere — on the MRT or at home — with full offline support. No WiFi needed.</p>
+  <div class="mockup-wrap">
+    <div class="phone">
+      <div class="ph-notch"><div class="ph-pill"></div></div>
+      <div class="ph-body">
+        <div class="ph-label">BTT Practice</div>
+        <div class="ph-title">Question 12 / 50</div>
+        <div class="ph-prog"><div class="ph-prog-fill"></div></div>
+        <div class="ph-card">
+          <div class="ph-q">What should you do when approaching a pedestrian crossing with people waiting?</div>
+          <div class="ph-opt c"><div class="ph-dot" style="background:#48bb78"></div>Slow down and stop if needed</div>
+          <div class="ph-opt w"><div class="ph-dot" style="background:#f05048"></div>Speed up to pass before them</div>
+          <div class="ph-opt n"><div class="ph-dot" style="background:#555"></div>Sound horn to warn them</div>
+        </div>
+        <div class="ph-foot">Correct — tap to continue</div>
+      </div>
     </div>
   </div>
-</section>
 
-<hr class="divider">
+  <hr class="divider">
 
-<!-- TOPICS -->
-<section>
-  <div class="section-label">Topics Covered</div>
-  <div class="section-title">All BTT & FTT Topics</div>
-  <div class="section-sub">Comprehensive coverage of every topic tested in the Singapore theory exams.</div>
-
-  <div class="topics-grid">
-    <div class="topic-chip"><span class="tc-icon">🚦</span> Traffic Signs & Signals</div>
-    <div class="topic-chip"><span class="tc-icon">⚖️</span> Traffic Rules & Law</div>
-    <div class="topic-chip"><span class="tc-icon">🔄</span> Roundabouts & Junctions</div>
-    <div class="topic-chip"><span class="tc-icon">🛣️</span> Expressway Driving</div>
-    <div class="topic-chip"><span class="tc-icon">🌧️</span> Road Hazards</div>
-    <div class="topic-chip"><span class="tc-icon">🚶</span> Pedestrian Safety</div>
-    <div class="topic-chip"><span class="tc-icon">🔧</span> Vehicle Maintenance</div>
-    <div class="topic-chip"><span class="tc-icon">🏥</span> Emergency Procedures</div>
-    <div class="topic-chip"><span class="tc-icon">🅿️</span> Parking Rules</div>
-    <div class="topic-chip"><span class="tc-icon">🍺</span> Drink Driving Laws</div>
-    <div class="topic-chip"><span class="tc-icon">📐</span> Safe Following Distance</div>
-    <div class="topic-chip"><span class="tc-icon">🌙</span> Night Driving</div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- CTA DOWNLOAD -->
-<div class="cta-section" id="download">
-  <div class="section-label" style="text-align:center">Get the App</div>
-  <h2>Ready to ace your theory test?</h2>
-  <p>Download SG Theory Test for free and start practising today.</p>
-  <a class="appstore-btn" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456" id="appstore-link">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-    <div class="as-text">
-      <div class="as-sub">Download on the</div>
-      <div class="as-main">App Store</div>
+  <div class="section-wrap" id="features-en">
+    <div class="s-eyebrow">Features</div>
+    <div class="s-title">Everything you need to pass</div>
+    <div class="s-sub">Designed to help Singapore learner drivers study smarter and pass with confidence.</div>
+    <div class="features-grid">
+      <div class="f-card"><div class="f-num">01</div><h3>Real Exam Questions</h3><p>Practice with questions styled after the actual BTT and FTT. No surprises on test day.</p></div>
+      <div class="f-card"><div class="f-num">02</div><h3>Detailed Explanations</h3><p>Understand the why behind every answer. Clear, memorable explanations for every question.</p></div>
+      <div class="f-card"><div class="f-num">03</div><h3>Progress Tracking</h3><p>See your score improve over time. Identify weak topics and focus where it matters most.</p></div>
+      <div class="f-card"><div class="f-num">04</div><h3>Timed Mock Tests</h3><p>Simulate real exam conditions with full-length timed tests. Build speed and confidence.</p></div>
+      <div class="f-card"><div class="f-num">05</div><h3>Bookmark &amp; Review</h3><p>Save tricky questions for later. Master every question before you sit the real exam.</p></div>
+      <div class="f-card"><div class="f-num">06</div><h3>Offline Access</h3><p>Study anywhere — on the MRT or at home — with full offline support. No connection needed.</p></div>
     </div>
-  </a>
-</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-wrap">
+    <div class="s-eyebrow">Topics Covered</div>
+    <div class="s-title">All BTT &amp; FTT Topics</div>
+    <div class="s-sub">Full coverage of every topic tested in the Singapore driving theory exams.</div>
+    <div class="topics-grid">
+      <div class="t-chip"><div class="t-dot"></div>Traffic Signs &amp; Signals</div>
+      <div class="t-chip"><div class="t-dot"></div>Traffic Rules &amp; Law</div>
+      <div class="t-chip"><div class="t-dot"></div>Roundabouts &amp; Junctions</div>
+      <div class="t-chip"><div class="t-dot"></div>Expressway Driving</div>
+      <div class="t-chip"><div class="t-dot"></div>Road Hazards</div>
+      <div class="t-chip"><div class="t-dot"></div>Pedestrian Safety</div>
+      <div class="t-chip"><div class="t-dot"></div>Vehicle Maintenance</div>
+      <div class="t-chip"><div class="t-dot"></div>Emergency Procedures</div>
+      <div class="t-chip"><div class="t-dot"></div>Parking Rules</div>
+      <div class="t-chip"><div class="t-dot"></div>Drink Driving Laws</div>
+      <div class="t-chip"><div class="t-dot"></div>Safe Following Distance</div>
+      <div class="t-chip"><div class="t-dot"></div>Night Driving</div>
+    </div>
+  </div>
+
+  <div class="cta-section" id="download">
+    <div class="s-eyebrow" style="text-align:center">Get the App</div>
+    <h2>Ready to ace your theory test?</h2>
+    <p>Download SG Theory Test for free and start practising today.</p>
+    <a class="appstore-btn" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div><div class="as-sub">Download on the</div><div class="as-main">App Store</div></div>
+    </a>
+  </div>
+
+</div><!-- /panel-en -->
+
+<!-- ════════════════ 中文 ════════════════ -->
+<div id="panel-zh" class="lang-panel" lang="zh-Hans">
+
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">新加坡驾照理论考试</div>
+      <h1>一次通过<br><em>理论考试</em></h1>
+      <p>用真题练习、详细解析备考 BTT 和 FTT，所有内容一个应用搞定。</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          在 App Store 下载
+        </a>
+        <a class="btn-ghost" href="#features-zh">查看功能</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="num"><span>500</span>+</div><div class="lbl">练习题</div></div>
+        <div class="stat"><div class="num">BTT &amp; FTT</div><div class="lbl">两项考试全覆盖</div></div>
+        <div class="stat"><div class="num">免费</div><div class="lbl">即刻开始</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup-wrap">
+    <div class="phone">
+      <div class="ph-notch"><div class="ph-pill"></div></div>
+      <div class="ph-body">
+        <div class="ph-label">BTT 练习</div>
+        <div class="ph-title">第 12 题 / 共 50 题</div>
+        <div class="ph-prog"><div class="ph-prog-fill"></div></div>
+        <div class="ph-card">
+          <div class="ph-q">接近有行人等候的斑马线时，您应该怎么做？</div>
+          <div class="ph-opt c"><div class="ph-dot" style="background:#48bb78"></div>减速，必要时停车</div>
+          <div class="ph-opt w"><div class="ph-dot" style="background:#f05048"></div>加速在行人前通过</div>
+          <div class="ph-opt n"><div class="ph-dot" style="background:#555"></div>按喇叭警告行人</div>
+        </div>
+        <div class="ph-foot">回答正确 — 点击继续</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-wrap" id="features-zh">
+    <div class="s-eyebrow">功能特色</div>
+    <div class="s-title">备考所需，一应俱全</div>
+    <div class="s-sub">专为新加坡驾照学员设计，更聪明地学习，更自信地应考。</div>
+    <div class="features-grid">
+      <div class="f-card"><div class="f-num">01</div><h3>真实考试题型</h3><p>以 BTT / FTT 真实题型为基础，考试当天不再有意外。</p></div>
+      <div class="f-card"><div class="f-num">02</div><h3>详细解析</h3><p>每道题都有清晰易记的解析，帮助你真正理解，而不只是死记硬背。</p></div>
+      <div class="f-card"><div class="f-num">03</div><h3>进度追踪</h3><p>随时查看分数变化，找出薄弱环节，有针对性地复习。</p></div>
+      <div class="f-card"><div class="f-num">04</div><h3>限时模拟测试</h3><p>模拟真实考试环境，全套限时测试，训练速度与自信。</p></div>
+      <div class="f-card"><div class="f-num">05</div><h3>书签与复习</h3><p>收藏难题，随时回顾，确保每道题都融会贯通。</p></div>
+      <div class="f-card"><div class="f-num">06</div><h3>离线使用</h3><p>地铁上、家里都能学习，完整离线支持，无需网络。</p></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-wrap">
+    <div class="s-eyebrow">考试主题</div>
+    <div class="s-title">BTT &amp; FTT 全部主题</div>
+    <div class="s-sub">全面覆盖新加坡驾驶理论考试的每个考点。</div>
+    <div class="topics-grid">
+      <div class="t-chip"><div class="t-dot"></div>交通标志与信号</div>
+      <div class="t-chip"><div class="t-dot"></div>交通规则与法律</div>
+      <div class="t-chip"><div class="t-dot"></div>环形交叉口与路口</div>
+      <div class="t-chip"><div class="t-dot"></div>高速公路驾驶</div>
+      <div class="t-chip"><div class="t-dot"></div>道路危险</div>
+      <div class="t-chip"><div class="t-dot"></div>行人安全</div>
+      <div class="t-chip"><div class="t-dot"></div>车辆维护</div>
+      <div class="t-chip"><div class="t-dot"></div>紧急程序</div>
+      <div class="t-chip"><div class="t-dot"></div>停车规则</div>
+      <div class="t-chip"><div class="t-dot"></div>酒后驾车法律</div>
+      <div class="t-chip"><div class="t-dot"></div>安全跟车距离</div>
+      <div class="t-chip"><div class="t-dot"></div>夜间驾驶</div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <div class="s-eyebrow" style="text-align:center">下载应用</div>
+    <h2>准备好通过考试了吗？</h2>
+    <p>免费下载 SG Theory Test，今天就开始练习。</p>
+    <a class="appstore-btn" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div><div class="as-sub">下载自</div><div class="as-main">App Store</div></div>
+    </a>
+  </div>
+
+</div><!-- /panel-zh -->
+
+<!-- ════════════════ BAHASA MALAYSIA ════════════════ -->
+<div id="panel-ms" class="lang-panel" lang="ms">
+
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">Teori Memandu Singapura</div>
+      <h1>Lulus Ujian Teori Anda —<br><em>Pertama Kali, Setiap Kali</em></h1>
+      <p>Kuasai BTT dan FTT dengan soalan peperiksaan sebenar, penerangan terperinci, dan alat latihan pintar — semua dalam satu aplikasi.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Muat Turun di App Store
+        </a>
+        <a class="btn-ghost" href="#features-ms">Lihat Ciri-ciri</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="num"><span>500</span>+</div><div class="lbl">Soalan Latihan</div></div>
+        <div class="stat"><div class="num">BTT &amp; FTT</div><div class="lbl">Kedua-dua Ujian</div></div>
+        <div class="stat"><div class="num">Percuma</div><div class="lbl">Untuk Bermula</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup-wrap">
+    <div class="phone">
+      <div class="ph-notch"><div class="ph-pill"></div></div>
+      <div class="ph-body">
+        <div class="ph-label">Latihan BTT</div>
+        <div class="ph-title">Soalan 12 / 50</div>
+        <div class="ph-prog"><div class="ph-prog-fill"></div></div>
+        <div class="ph-card">
+          <div class="ph-q">Apakah yang perlu anda lakukan ketika menghampiri lintasan pejalan kaki yang sedang menunggu?</div>
+          <div class="ph-opt c"><div class="ph-dot" style="background:#48bb78"></div>Perlahan dan berhenti jika perlu</div>
+          <div class="ph-opt w"><div class="ph-dot" style="background:#f05048"></div>Laju sebelum mereka menyeberang</div>
+          <div class="ph-opt n"><div class="ph-dot" style="background:#555"></div>Bunyi hon untuk amaran</div>
+        </div>
+        <div class="ph-foot">Betul — ketik untuk teruskan</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-wrap" id="features-ms">
+    <div class="s-eyebrow">Ciri-ciri</div>
+    <div class="s-title">Semua yang anda perlukan untuk lulus</div>
+    <div class="s-sub">Direka untuk membantu pemandu pelajar Singapura belajar dengan lebih bijak.</div>
+    <div class="features-grid">
+      <div class="f-card"><div class="f-num">01</div><h3>Soalan Peperiksaan Sebenar</h3><p>Berlatih dengan soalan berdasarkan BTT dan FTT sebenar. Tiada kejutan pada hari peperiksaan.</p></div>
+      <div class="f-card"><div class="f-num">02</div><h3>Penerangan Terperinci</h3><p>Fahami sebab di sebalik setiap jawapan dengan penerangan yang jelas dan mudah diingati.</p></div>
+      <div class="f-card"><div class="f-num">03</div><h3>Penjejakan Kemajuan</h3><p>Pantau peningkatan skor anda. Kenal pasti topik lemah dan tumpukan ulangkaji dengan tepat.</p></div>
+      <div class="f-card"><div class="f-num">04</div><h3>Ujian Olok-olok Berwaktu</h3><p>Simulasikan suasana peperiksaan sebenar dengan ujian penuh berwaktu untuk membina keyakinan.</p></div>
+      <div class="f-card"><div class="f-num">05</div><h3>Penanda Buku &amp; Ulasan</h3><p>Simpan soalan sukar untuk disemak kemudian. Pastikan anda menguasai setiap soalan.</p></div>
+      <div class="f-card"><div class="f-num">06</div><h3>Akses Luar Talian</h3><p>Belajar di mana sahaja — dalam MRT atau di rumah — dengan sokongan luar talian sepenuhnya.</p></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-wrap">
+    <div class="s-eyebrow">Topik Diliputi</div>
+    <div class="s-title">Semua Topik BTT &amp; FTT</div>
+    <div class="s-sub">Liputan lengkap setiap topik yang diuji dalam peperiksaan teori memandu Singapura.</div>
+    <div class="topics-grid">
+      <div class="t-chip"><div class="t-dot"></div>Tanda &amp; Isyarat Lalu Lintas</div>
+      <div class="t-chip"><div class="t-dot"></div>Peraturan &amp; Undang-undang</div>
+      <div class="t-chip"><div class="t-dot"></div>Bulatan &amp; Simpang</div>
+      <div class="t-chip"><div class="t-dot"></div>Memandu di Lebuhraya</div>
+      <div class="t-chip"><div class="t-dot"></div>Bahaya Jalan Raya</div>
+      <div class="t-chip"><div class="t-dot"></div>Keselamatan Pejalan Kaki</div>
+      <div class="t-chip"><div class="t-dot"></div>Penyelenggaraan Kenderaan</div>
+      <div class="t-chip"><div class="t-dot"></div>Prosedur Kecemasan</div>
+      <div class="t-chip"><div class="t-dot"></div>Peraturan Tempat Letak</div>
+      <div class="t-chip"><div class="t-dot"></div>Undang-undang Memandu Mabuk</div>
+      <div class="t-chip"><div class="t-dot"></div>Jarak Mengekori Selamat</div>
+      <div class="t-chip"><div class="t-dot"></div>Memandu Malam Hari</div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <div class="s-eyebrow" style="text-align:center">Muat Turun Aplikasi</div>
+    <h2>Bersedia untuk lulus ujian teori anda?</h2>
+    <p>Muat turun SG Theory Test secara percuma dan mula berlatih hari ini.</p>
+    <a class="appstore-btn" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div><div class="as-sub">Muat turun di</div><div class="as-main">App Store</div></div>
+    </a>
+  </div>
+
+</div><!-- /panel-ms -->
+
+<!-- ════════════════ TAMIL ════════════════ -->
+<div id="panel-ta" class="lang-panel" lang="ta">
+
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">சிங்கப்பூர் வாகன இயக்க கோட்பாடு</div>
+      <h1>முதல் முயற்சியிலேயே<br><em>தேர்ச்சி பெறுங்கள்</em></h1>
+      <p>BTT மற்றும் FTT க்கு உண்மையான தேர்வு வினாக்கள், விரிவான விளக்கங்கள் மற்றும் திறமையான பயிற்சி கருவிகளுடன் தயாரிடுங்கள்.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store-ல் பதிவிறக்கவும்
+        </a>
+        <a class="btn-ghost" href="#features-ta">அம்சங்கள் பார்க்க</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="num"><span>500</span>+</div><div class="lbl">பயிற்சி வினாக்கள்</div></div>
+        <div class="stat"><div class="num">BTT &amp; FTT</div><div class="lbl">இரு தேர்வுகளும்</div></div>
+        <div class="stat"><div class="num">இலவசம்</div><div class="lbl">தொடங்க</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup-wrap">
+    <div class="phone">
+      <div class="ph-notch"><div class="ph-pill"></div></div>
+      <div class="ph-body">
+        <div class="ph-label">BTT பயிற்சி</div>
+        <div class="ph-title">வினா 12 / 50</div>
+        <div class="ph-prog"><div class="ph-prog-fill"></div></div>
+        <div class="ph-card">
+          <div class="ph-q">காத்திருக்கும் பாதசாரிகள் உள்ள கடவுவழியை அணுகும்போது என்ன செய்ய வேண்டும்?</div>
+          <div class="ph-opt c"><div class="ph-dot" style="background:#48bb78"></div>வேகம் குறைத்து நிறுத்தவும்</div>
+          <div class="ph-opt w"><div class="ph-dot" style="background:#f05048"></div>வேகமாக கடந்து செல்லவும்</div>
+          <div class="ph-opt n"><div class="ph-dot" style="background:#555"></div>ஹார்ன் அடிக்கவும்</div>
+        </div>
+        <div class="ph-foot">சரியான பதில் — தொடர தட்டவும்</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-wrap" id="features-ta">
+    <div class="s-eyebrow">அம்சங்கள்</div>
+    <div class="s-title">தேர்ச்சி பெற தேவையான அனைத்தும்</div>
+    <div class="s-sub">சிங்கப்பூர் வாகன இயக்க மாணவர்களுக்காக வடிவமைக்கப்பட்டது.</div>
+    <div class="features-grid">
+      <div class="f-card"><div class="f-num">01</div><h3>உண்மையான தேர்வு வினாக்கள்</h3><p>BTT மற்றும் FTT தேர்வுகளின் உண்மையான வடிவில் பயிற்சி செய்யுங்கள்.</p></div>
+      <div class="f-card"><div class="f-num">02</div><h3>விரிவான விளக்கங்கள்</h3><p>ஒவ்வொரு விடையின் பின்னாலும் உள்ள காரணத்தை தெளிவாக புரிந்துகொள்ளுங்கள்.</p></div>
+      <div class="f-card"><div class="f-num">03</div><h3>முன்னேற்றம் கண்காணிப்பு</h3><p>உங்கள் மதிப்பெண் மேம்பாட்டை கண்காணிக்கவும். பலவீனமான தலைப்புகளை அடையாளம் காணவும்.</p></div>
+      <div class="f-card"><div class="f-num">04</div><h3>நேரமிட்ட மாதிரி தேர்வுகள்</h3><p>நிஜ தேர்வு சூழலை உருவகப்படுத்தி வேகம் மற்றும் நம்பிக்கையை வளர்க்கவும்.</p></div>
+      <div class="f-card"><div class="f-num">05</div><h3>புத்தகக்குறி &amp; மதிப்பாய்வு</h3><p>கடினமான வினாக்களை சேமித்து பின்னர் திரும்பி படிக்கவும்.</p></div>
+      <div class="f-card"><div class="f-num">06</div><h3>இணைய இல்லாமல் பயன்படுத்தல்</h3><p>MRT-ல் அல்லது வீட்டில் — எந்த இணைப்பும் இல்லாமல் முழுமையாக பயன்படுத்தலாம்.</p></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-wrap">
+    <div class="s-eyebrow">தலைப்புகள்</div>
+    <div class="s-title">BTT &amp; FTT அனைத்து தலைப்புகளும்</div>
+    <div class="s-sub">சிங்கப்பூர் வாகன இயக்க கோட்பாட்டு தேர்வில் சோதிக்கப்படும் அனைத்து தலைப்புகளும்.</div>
+    <div class="topics-grid">
+      <div class="t-chip"><div class="t-dot"></div>போக்குவரத்து அடையாளங்கள்</div>
+      <div class="t-chip"><div class="t-dot"></div>போக்குவரத்து விதிகள் &amp; சட்டம்</div>
+      <div class="t-chip"><div class="t-dot"></div>சுழல் சாலைகள் &amp; சந்திப்புகள்</div>
+      <div class="t-chip"><div class="t-dot"></div>நெடுஞ்சாலை ஓட்டுதல்</div>
+      <div class="t-chip"><div class="t-dot"></div>சாலை அபாயங்கள்</div>
+      <div class="t-chip"><div class="t-dot"></div>பாதசாரி பாதுகாப்பு</div>
+      <div class="t-chip"><div class="t-dot"></div>வாகன பராமரிப்பு</div>
+      <div class="t-chip"><div class="t-dot"></div>அவசர நடவடிக்கைகள்</div>
+      <div class="t-chip"><div class="t-dot"></div>நிறுத்துமிட விதிகள்</div>
+      <div class="t-chip"><div class="t-dot"></div>குடிபோதை வாகன சட்டங்கள்</div>
+      <div class="t-chip"><div class="t-dot"></div>பாதுகாப்பான தொடர்தூரம்</div>
+      <div class="t-chip"><div class="t-dot"></div>இரவு நேர ஓட்டுதல்</div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <div class="s-eyebrow" style="text-align:center">பயன்பாடு பதிவிறக்கவும்</div>
+    <h2>தேர்வில் வெற்றி பெற தயாரா?</h2>
+    <p>SG Theory Test-ஐ இலவசமாக பதிவிறக்கி இன்றே பயிற்சி தொடங்குங்கள்.</p>
+    <a class="appstore-btn" href="https://apps.apple.com/sg/app/driving-exam-guide-singapore/id6450138456">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div><div class="as-sub">பதிவிறக்கவும்</div><div class="as-main">App Store</div></div>
+    </a>
+  </div>
+
+</div><!-- /panel-ta -->
 
 <!-- FOOTER -->
 <footer>
@@ -423,6 +695,17 @@
     <a href="mailto:hello@dannygoodman.net">Contact</a>
   </div>
 </footer>
+
+<script>
+  function switchLang(lang, btn) {
+    document.querySelectorAll('.lang-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.lang-nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + lang).classList.add('active');
+    btn.classList.add('active');
+    document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : lang;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
 
 </body>
 </html>
